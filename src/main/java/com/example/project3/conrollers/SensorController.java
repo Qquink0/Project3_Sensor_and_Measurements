@@ -1,5 +1,6 @@
 package com.example.project3.conrollers;
 
+import com.example.project3.dto.SensorDTO;
 import com.example.project3.models.Sensor;
 import com.example.project3.services.SensorService;
 import com.example.project3.util.SensorErrorResponse;
@@ -32,7 +33,7 @@ public class SensorController {
     }
 
     @PostMapping("/registration")
-    public ResponseEntity<HttpStatus> registrationSensor(@RequestBody @Valid com.example.project3.dto.SensorDTO sensorDTO,
+    public ResponseEntity<HttpStatus> registrationSensor(@RequestBody @Valid SensorDTO sensorDTO,
                                                          BindingResult bindingResult) {
         Sensor sensor = convertToSensor(sensorDTO);
 
@@ -63,7 +64,7 @@ public class SensorController {
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
-    private Sensor convertToSensor(com.example.project3.dto.SensorDTO sensorDTO) {
+    private Sensor convertToSensor(SensorDTO sensorDTO) {
         return modelMapper.map(sensorDTO, Sensor.class);
     }
 }
